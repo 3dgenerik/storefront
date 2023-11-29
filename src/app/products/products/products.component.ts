@@ -10,13 +10,18 @@ import { Product } from '../../models/Product';
 export class ProductsComponent implements OnInit {
     products: Product[] = [];
     tempProducts: Product[] = [];
+    errorMessage:string = '';
     constructor(private getProductsService: GetProductsService) {}
 
     ngOnInit(): void {
         this.getProductsService.getProducts().subscribe((response) => {
             this.products = response;
             this.tempProducts = response;
-        });
+        },
+        (error)=>{
+          this.errorMessage = error
+        }
+        );
     }
 
     getCategory(category: string): void {

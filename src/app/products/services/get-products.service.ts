@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/Product';
 import { PRODUCTS, ROOT_URL } from '../../constants/constants';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import {catchError} from 'rxjs/operators'
 
 @Injectable({
     providedIn: 'root',
@@ -12,6 +13,9 @@ export class GetProductsService {
 
     getProducts(): Observable<Product[]> {
         const data = this.http.get<Product[]>(`${ROOT_URL}${PRODUCTS}`);
-        return data;
+        return data.pipe(catchError((error)=>{
+          console.log( 'Error fetching products: ', error)
+          return throwError(()=>'Error occur while fetching data.')
+        }))
     }
 }
