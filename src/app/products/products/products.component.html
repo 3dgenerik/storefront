@@ -1,0 +1,14 @@
+<div class="products-wrapper p-4 container">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3 mb-3">
+            <div>Filter categories:</div>
+            <app-products-filter (getCategoryProp)="getCategory($event)"></app-products-filter>
+        </div>
+        <div><span class="fw-bold text-success">{{products.length}}</span> products found</div>
+    </div>
+
+
+    <div class="products ">
+        <app-product *ngFor="let product of products" [product]="product"></app-product>
+    </div>
+</div>
