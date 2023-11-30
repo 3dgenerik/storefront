@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuantityComboComponent } from './layout/quantity-combo/quantity-combo.component';
 import { ProductsFilterComponent } from './layout/products-filter/products-filter.component';
 import { CapitalizePipe } from './pipes/CapitalizePipe';
+import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
+import { SigninComponent } from './users/signin/signin.component';
+import { RegisterComponent } from './users/register/register.component';
+import { SigninRegisterNavigationComponent } from './users/signin-register-navigation/signin-register-navigation.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +24,10 @@ import { CapitalizePipe } from './pipes/CapitalizePipe';
         QuantityComboComponent,
         ProductsFilterComponent,
         CapitalizePipe,
+        NavBarComponent,
+        SigninComponent,
+        RegisterComponent,
+        SigninRegisterNavigationComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule],
     providers: [],

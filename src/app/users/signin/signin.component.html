@@ -1,0 +1,55 @@
+<app-signin-register-navigation></app-signin-register-navigation>
+<div class="d-flex justify-content-center">
+    <form #form = "ngForm" (ngSubmit)="submitSignin()" class="p-4 border rounded-2 mt-5" style="width: 400px; background-color: white;">
+        <h1 class="pb-3 text-primary">Sign in</h1>
+        <div class="mb-3">
+          <label for="first_name" class="form-label">First name</label>
+          <input type="text" class="form-control" name="first_name" required minlength="4" [(ngModel)]="firstName" #firstNameInput = 'ngModel'>
+          <div *ngIf="firstNameInput.invalid && firstNameInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+            <div *ngIf="firstNameInput.hasError('required')">
+                First name can't be empty.
+            </div>
+            <div *ngIf="firstNameInput.hasError('minlength')">
+                First name must have minimum 4 characters.
+            </div>
+        </div>
+
+        </div>
+    
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last name</label>
+            <input type="text" class="form-control" name="last_name" required minlength="4" [(ngModel)]="lastName" #lastNameInput = 'ngModel'>
+            <div *ngIf="lastNameInput.invalid && lastNameInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+                <div *ngIf="lastNameInput.hasError('required')">
+                    Last name can't be empty.
+                </div>
+                <div *ngIf="lastNameInput.hasError('minlength')">
+                    Last name must have minimum 4 characters.
+                </div>
+            </div>
+          </div>
+        
+        <div class="mb-5">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" required minlength="4" [(ngModel)]="password" #passwordInput = 'ngModel'>
+          <div *ngIf="passwordInput.invalid && passwordInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+            <div *ngIf="passwordInput.hasError('required')">
+                Password can't be empty.
+            </div>
+            <div *ngIf="passwordInput.hasError('minlength')">
+                Password must have minimum 4 characters.
+            </div>
+        </div>
+        </div>
+        
+        <div class="" style="color: red; font-size: 0.8rem;">{{signInError}}</div>
+        <button type="submit" class="btn btn-primary w-100 p-2">
+            <ng-template [ngIf]="loading" [ngIfElse]="elseBlock">Loading...</ng-template>
+            <ng-template #elseBlock>Sign in</ng-template>
+        </button>
+        <p class="text-center pt-2" style="font-size: .8rem;">Don't have an account? <a class="fw-bold" routerLink="/register">Register now</a></p>
+      </form>
+
+</div>
+
+<div>{{createdUserInfo.output.token}}</div>

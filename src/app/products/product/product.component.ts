@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../models/Product';
+import { TokenStorageService } from '../../users/services/token-storage.service';
+import { ISignInRegisterUser } from '../../interfaces/interfaces';
 
 @Component({
     selector: 'app-product',
@@ -9,7 +11,10 @@ import { Product } from '../../models/Product';
 export class ProductComponent implements OnInit {
     @Input() product: Product = new Product();
     quantity: number = 1;
-    constructor() {}
+    token: ISignInRegisterUser | null;
+    constructor(private tokenStorageService: TokenStorageService) {
+        this.token = JSON.parse(tokenStorageService.getToken() || 'null')
+    }
 
     ngOnInit(): void {}
 

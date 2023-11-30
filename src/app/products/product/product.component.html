@@ -5,8 +5,12 @@
     <div class="mt-3" style="font-size: .8rem; color: grey;">{{product.category | uppercase}}</div>
     <h3 class="pb-4 fs-5">{{product.name}}</h3>
     <p class="fw-bold">{{product.price | currency: 'USD': true}}</p>
-    <div class="w-100 d-flex gap-4">
-        <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo>
-        <button class="btn btn-primary w-100 rounded-1">Add to cart</button>
-    </div>
+
+    <ng-template [ngIf]="token">    
+        <div class="w-100 d-flex gap-4">
+            <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo>
+            <button class="btn btn-primary w-100 rounded-1">Add to cart</button>
+        </div>
+    </ng-template>
+
 </div>

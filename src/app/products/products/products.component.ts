@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProductsService } from '../services/get-products.service';
 import { Product } from '../../models/Product';
+import { TokenStorageService } from '../../users/services/token-storage.service';
+import { ISignInRegisterUser } from '../../interfaces/interfaces';
 
 @Component({
     selector: 'app-products',
@@ -10,17 +12,28 @@ import { Product } from '../../models/Product';
 export class ProductsComponent implements OnInit {
     products: Product[] = [];
     tempProducts: Product[] = [];
-    errorMessage:string = '';
-    constructor(private getProductsService: GetProductsService) {}
+    errorMessage: string = '';
+    hasError: boolean = false;
+    token: ISignInRegisterUser | null;
+
+    bool: boolean = false;
+
+    constructor(private getProductsService: GetProductsService, private tokenStorageService: TokenStorageService) {
+        this.token = JSON.parse(this.tokenStorageService.getToken() || 'null')
+    }
 
     ngOnInit(): void {
-        this.getProductsService.getProducts().subscribe((response) => {
-            this.products = response;
-            this.tempProducts = response;
-        },
-        (error)=>{
-          this.errorMessage = error
-        }
+        console.log('-----', this.token);
+        this.getProductsService.getProducts().subscribe(
+            (response) => {
+                this.products = response;
+                this.tempProducts = response;
+                this.hasError = false;
+            },
+            (error) => {
+                this.hasError = true;
+                this.errorMessage = error;
+            },
         );
     }
 
