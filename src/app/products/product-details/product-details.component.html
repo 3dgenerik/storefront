@@ -1,0 +1,26 @@
+<app-nav-bar-wrapper></app-nav-bar-wrapper>
+
+
+<div class="w-100 d-flex justify-content-center">
+    <div class="d-inline-flex p-3 border rounded-4 mt-5 gap-3 mx-3" style="background-color: white; max-width: 1000px;">
+        <div class="overflow-hidden rounded-2">
+            <img class="w-100 h-100" [src]="'assets/images/products/' + product.category + '.jpg'" width="1024" height="1024" [alt]="product.category">
+        </div>
+        <div class="d-flex flex-column justify-content-between" style="width: 300px;">
+
+            <div>
+                <div>{{product.category | uppercase}}</div>
+                <h1 class="fs-2 mt-2">{{product.name}}</h1>
+            </div>
+            <div>
+                <h3 class="fw-bold">{{product.price | currency:'USD'}} <span class="ps-1" style="font-size: 0.8rem; color: rgba(0,0,0,.2);">({{(product.price | toNumber) * quantity | currency: 'USD'}})</span></h3>
+                <ng-template [ngIf]="token">    
+                    <div class="d-flex flex-column gap-3">
+                        <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo>
+                        <button (click)="backToProducts()" class="btn btn-dark rounded-1">Back to products</button>
+                    </div>
+            </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

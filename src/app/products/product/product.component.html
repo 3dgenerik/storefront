@@ -7,10 +7,9 @@
     <p class="fw-bold">{{product.price | currency: 'USD': true}}</p>
 
     <ng-template [ngIf]="token">    
-        <div class="w-100 d-flex gap-4">
-            <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo>
-            <button class="btn btn-primary w-100 rounded-1">Add to cart</button>
-        </div>
+            <!-- <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo> -->
+            <app-quantity-combo></app-quantity-combo>
+            
     </ng-template>
-
+    <button (click)="toProductDetails(product)" class="btn btn-dark mt-3 w-100">Go to details</button>
 </div>

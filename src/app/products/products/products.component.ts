@@ -16,25 +16,25 @@ export class ProductsComponent implements OnInit {
     hasError: boolean = false;
     token: ISignInRegisterUser | null;
 
-    bool: boolean = false;
-
-    constructor(private getProductsService: GetProductsService, private tokenStorageService: TokenStorageService) {
-        this.token = JSON.parse(this.tokenStorageService.getToken() || 'null')
+    constructor(
+        private getProductsService: GetProductsService,
+        private tokenStorageService: TokenStorageService,
+    ) {
+        this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
     }
 
     ngOnInit(): void {
-        console.log('-----', this.token);
-        this.getProductsService.getProducts().subscribe(
-            (response) => {
+        this.getProductsService.getProducts().subscribe({
+            next: (response) => {
                 this.products = response;
                 this.tempProducts = response;
                 this.hasError = false;
             },
-            (error) => {
+            error: (error) => {
                 this.hasError = true;
                 this.errorMessage = error;
             },
-        );
+        });
     }
 
     getCategory(category: string): void {

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class TokenStorageService {
-  private token: string = '';
+    private token: string = '';
 
-  saveToken(token: string): void {
-    localStorage.setItem(this.token, token);
-  }
+    saveToken(valueName: string, token: string): void {
+        localStorage.setItem(valueName, token);
+    }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.token);
-  }
+    getToken(valueName: string): string | null {
+        return localStorage.getItem(valueName);
+    }
 
-  removeToken(): void {
-    localStorage.removeItem(this.token);
-  }
+    removeToken(valueName: string): void {
+        localStorage.removeItem(valueName);
+    }
 }

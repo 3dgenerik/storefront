@@ -1,6 +1,9 @@
-<div class="d-flex justify-content-end p-2 border-bottom align-items-center" style="background-color: white;">
-    <div class="d-flex align-items-center gap-3">
-        <div class="ps-3" style="font-size: 0.8rem;"><span class="text-secondary pe-2">Active user:</span><span class="fw-bold text-secondary">{{token?.output?.user?.last_name}}, {{token?.output?.user?.first_name}}</span></div>
-        <button class="btn btn-danger rounded-1 py-1" style="font-size: 0.7rem;" (click)="logOut()">Log out</button>
+
+    <div class="d-flex justify-content-between p-2 border-bottom align-items-center" style="background-color: white;">
+        <div><span>STORE</span><span class="fw-bold text-dark">FRONT</span></div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="ps-3" style="font-size: 0.8rem;"><span class="text-secondary pe-2">Active user:</span><span class="fw-bold text-secondary">{{token?.output?.user?.last_name}}, {{token?.output?.user?.first_name}}</span></div>
+            <button class="btn btn-danger rounded-1 py-1" style="font-size: 0.7rem;" (click)="logOut()">Log out</button>
+        </div>
     </div>
-</div>
+

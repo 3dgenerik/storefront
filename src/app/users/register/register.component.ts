@@ -43,17 +43,17 @@ export class RegisterComponent {
 
         this.loading = true;
 
-        this.signinRegisterService.signInRegister(userForm, `${ROOT_URL}users/signup`).subscribe(
-            (response) => {
+        this.signinRegisterService.signInRegister(userForm, `${ROOT_URL}users/signup`).subscribe({
+            next: (response) => {
                 this.createdUserInfo = response;
-                this.tokenStorageService.saveToken(JSON.stringify(this.createdUserInfo))
+                this.tokenStorageService.saveToken('token', JSON.stringify(this.createdUserInfo));
                 this.loading = false;
                 this.router.navigate(['/']);
             },
-            (error) => {
+            error: (error) => {
                 this.loading = false;
                 this.signInError = error;
             },
-        );
+        });
     }
 }
