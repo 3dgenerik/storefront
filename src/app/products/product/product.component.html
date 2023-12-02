@@ -1,15 +1,39 @@
-<div class = 'product-wrapper border p-3 rounded-3'>
-    <div class="img-wrapper overflow-hidden rounded-1">
-        <img class="w-100 h-100" [src]="'assets/images/products/' + product.category + '.jpg'" width="1024" height="1024" [alt]="product.category">
-    </div>
-    <div class="mt-3" style="font-size: .8rem; color: grey;">{{product.category | uppercase}}</div>
-    <h3 class="pb-4 fs-5">{{product.name}}</h3>
-    <p class="fw-bold">{{product.price | currency: 'USD': true}}</p>
+    <div class = 'product-wrapper border p-3 rounded-3 gap-3' [ngClass]="{'d-flex':layout==='detail', 'd-block':layout==='list'}">
+        <div class="img-wrapper overflow-hidden rounded-1 w-sm-50 w-100">
+            <img class="w-100 h-100" [src]="'assets/images/products/' + product.category + '.jpg'" width="1024" height="1024" [alt]="product.category">
+        </div>
+        <div class="flex-column justify-content-between w-sm-50 w-100" [ngClass]="{'d-flex':layout==='detail', 'd-block':layout==='list'}">
 
-    <ng-template [ngIf]="token">    
-            <!-- <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo> -->
-            <app-quantity-combo></app-quantity-combo>
+            <div>
+                <div class="mt-3 text-secondary" style="font-size: .8rem;">{{product.category | uppercase}}</div>
+                <h3 class="pb-4 fs-5">{{product.name}}</h3>
+                <ng-template [ngIf]="layout==='detail'">
+                    <div class="text-secondary" style="font-size: 0.8rem;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor totam illum quidem aliquid dolore dolores adipisci asperiores, doloremque, nesciunt quod iure ipsum voluptatibus ex reiciendis incidunt exercitationem alias aspernatur itaque.</div>
+                </ng-template>
+            </div>
+
+            <div >
+                <p class="fw-bold">{{product.price | currency: 'USD': 'symbol' }}</p>
             
-    </ng-template>
-    <button (click)="toProductDetails(product)" class="btn btn-dark mt-3 w-100">Go to details</button>
-</div>
+                <ng-template [ngIf]="token">    
+                        <!-- <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo> -->
+                        <app-quantity-combo></app-quantity-combo>
+                </ng-template>
+
+                <ng-template [ngIf]="layout==='detail' && !token">
+                    <app-info [text]="['Plase', 'sign in', 'if you want to purchase our products.']"></app-info>
+                </ng-template>
+
+                <ng-template [ngIf]="layout==='detail'">
+                    <app-back-to-product></app-back-to-product>
+                </ng-template>
+
+                <ng-template [ngIf]="layout==='list'">
+                
+                    <button (click)="toProductDetails(product)" class="btn btn-dark mt-3 w-100 p-2" style="font-size: .8rem;">Go to details</button>
+                </ng-template>
+            </div>
+
+        </div>
+    
+    </div>

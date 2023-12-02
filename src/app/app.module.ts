@@ -19,6 +19,10 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { QuantityService } from './products/services/quantity.service';
 import { NavBarWrapperComponent } from './navigation/nav-bar-wrapper/nav-bar-wrapper.component';
 import { ToNumberPipe } from './pipes/toNumber';
+import { InfoComponent } from './layout/info/info.component';
+import { GetAllUsersComponent } from './users/get-all-users/get-all-users.component';
+import { UserComponent } from './users/user/user.component';
+import { BackToProductComponent } from './layout/back-to-product/back-to-product.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +39,10 @@ import { ToNumberPipe } from './pipes/toNumber';
         SigninRegisterNavigationComponent,
         ProductDetailsComponent,
         NavBarWrapperComponent,
+        InfoComponent,
+        GetAllUsersComponent,
+        UserComponent,
+        BackToProductComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule],
     providers: [QuantityService],

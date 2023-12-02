@@ -12,22 +12,22 @@
 
 
 <div class="products-wrapper p-4 container">
-    
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="pt-5"></div>
+    <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-start justify-content-between">
         <div class="d-flex align-items-center gap-3 mb-3">
             <div>Filter categories:</div>
             <app-products-filter (getCategoryProp)="getCategory($event)"></app-products-filter>
         </div>
-        <div><span class="fw-bold text-success">{{products.length}}</span> products found</div>
+        <div><span class="fw-bold text-success">{{products.length}}</span> <span class="text-secondary" style="font-size: 0.8rem;"> products found</span></div>
     </div>
 
 
     <div class="products ">
-        <app-product *ngFor="let product of products" [product]="product"></app-product>
+        <app-product *ngFor="let product of products" [product]="product" [layout]="'list'"></app-product>
     </div>
     <ng-template [ngIf]="hasError">
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <p class="server-error bg-danger bg-opacity-50 text-danger p-2 rounded-2 border border-danger w-50">{{errorMessage}}</p>
+            <p class="server-error bg-danger bg-opacity-50 text-dark p-2 rounded-2 border border-danger">{{errorMessage}}</p>
         </div>
     </ng-template>
 </div>

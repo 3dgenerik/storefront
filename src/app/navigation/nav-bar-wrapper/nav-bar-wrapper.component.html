@@ -1,8 +1,10 @@
 
-<ng-template  [ngIf]="token" [ngIfElse]="elseBlock">
-    <app-nav-bar></app-nav-bar>
-</ng-template >
-
-<ng-template  #elseBlock>
-    <app-signin-register-navigation></app-signin-register-navigation>
-</ng-template >
+<div class="w-100" style="position: fixed;">
+    <ng-template  [ngIf]="token" [ngIfElse]="elseBlock">
+        <app-nav-bar></app-nav-bar>
+    </ng-template >
+    
+    <ng-template  #elseBlock>
+        <app-signin-register-navigation></app-signin-register-navigation>
+    </ng-template >
+</div>

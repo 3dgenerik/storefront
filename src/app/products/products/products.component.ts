@@ -3,6 +3,9 @@ import { GetProductsService } from '../services/get-products.service';
 import { Product } from '../../models/Product';
 import { TokenStorageService } from '../../users/services/token-storage.service';
 import { ISignInRegisterUser } from '../../interfaces/interfaces';
+import { GenerateProductsService } from '../services/generate-products.service';
+import { GetAllProductsService } from '../services/get-all-products.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-products',
@@ -19,22 +22,48 @@ export class ProductsComponent implements OnInit {
     constructor(
         private getProductsService: GetProductsService,
         private tokenStorageService: TokenStorageService,
+        private generateProductsService: GenerateProductsService,
+        private getAllProductsService: GetAllProductsService
     ) {
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
     }
 
     ngOnInit(): void {
-        this.getProductsService.getProducts().subscribe({
-            next: (response) => {
-                this.products = response;
-                this.tempProducts = response;
-                this.hasError = false;
+        this.getAllProductsService.getAllProducts().subscribe({
+            next:(allProducts)=>{
+                if(allProducts.length === 0){
+                    this.generateProductsService.getenerateProducts().subscribe({
+                        error:(error)=>{
+                            if(error instanceof HttpErrorResponse){
+                                
+                                console.log(error.error.text);
+                            }
+                        }
+                    })
+                }
             },
-            error: (error) => {
+            error:(error)=>{
                 this.hasError = true;
-                this.errorMessage = error;
+                this.errorMessage = `${error}. Maybe server problem.`
             },
-        });
+            complete: ()=>{
+                this.getProductsService.getProducts().subscribe({
+                    next: (response) => {
+                        this.products = response;
+                        this.tempProducts = response;
+                        this.hasError = false;
+                    },
+                    error: (error) => {
+                        this.hasError = true;
+                        this.errorMessage = error;
+                    },
+                });
+            }
+        })
+
+
+
+
     }
 
     getCategory(category: string): void {

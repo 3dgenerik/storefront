@@ -12,9 +12,10 @@ import { QuantityService } from '../services/quantity.service';
 })
 export class ProductComponent implements OnInit {
     @Input() product: Product = new Product();
+    @Input() token: ISignInRegisterUser | null;
+    @Input() layout:string = '';
 
     quantity: number = 1;
-    token: ISignInRegisterUser | null;
 
     constructor(
         private tokenStorageService: TokenStorageService,

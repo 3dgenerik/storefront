@@ -1,0 +1,16 @@
+<div class="ps-3 pt-3" style="font-size: 0.8rem;">
+    <a routerLink="/">Back to home</a>
+</div>
+
+<ng-template [ngIf]="!hasError" [ngIfElse]="elseBlock">
+    
+    <div class="d-flex gap-3 p-3" style="flex-wrap: wrap;">
+        <app-user *ngFor="let user of users" [user]="user"></app-user>
+    </div>
+</ng-template>
+
+<ng-template #elseBlock>
+    <div class="w-100 d-flex justify-content-center">
+        <div class="bg-danger bg-opacity-50 d-inline-flex p-2 m-3 rounded-2 border border-danger" style="font-style: 0.7rem;">{{errorMessage}}</div>
+    </div>
+</ng-template>

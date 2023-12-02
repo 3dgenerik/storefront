@@ -54,7 +54,4 @@ export class ProductDetailsComponent implements OnInit {
       this.quantity = quantity;
   }
 
-    backToProducts(): void {
-        this.router.navigate(['/']);
-    }
 }
