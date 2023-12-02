@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ROOT_URL, USERS } from '../../constants/constants';
 import { ISignInRegisterUser } from '../../interfaces/interfaces';
 import { TokenStorageService } from './token-storage.service';
+import { HeadersService } from '../../services/headers.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,13 @@ import { TokenStorageService } from './token-storage.service';
 export class GetAllUsersService {
   token: ISignInRegisterUser;
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) {
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService, private headersService: HeadersService) {
     this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null') as ISignInRegisterUser
     
   }
 
   getAllUsers():Observable<User[]>{
-    const headers = new HttpHeaders({
-      'Authorization':this.token ? `Bearer ${this.token.output.token}` : ''
-    })
+    const headers = this.headersService.headers()
 
     const data = this.http.get<User[]>(`${ROOT_URL}${USERS}`, {headers})
     return data.pipe(catchError((error)=>{

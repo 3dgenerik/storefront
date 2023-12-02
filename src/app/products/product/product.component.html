@@ -17,7 +17,7 @@
             
                 <ng-template [ngIf]="token">    
                         <!-- <app-quantity-combo (getQuantityProp)="getQuantity($event)"></app-quantity-combo> -->
-                        <app-quantity-combo></app-quantity-combo>
+                        <app-quantity-combo [product]="product"></app-quantity-combo>
                 </ng-template>
 
                 <ng-template [ngIf]="layout==='detail' && !token">
