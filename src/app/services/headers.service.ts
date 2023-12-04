@@ -3,20 +3,19 @@ import { TokenStorageService } from '../users/services/token-storage.service';
 import { ISignInRegisterUser } from '../interfaces/interfaces';
 import { HttpHeaders } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class HeadersService {
-  token: ISignInRegisterUser;
+    token: ISignInRegisterUser;
 
-  constructor( private tokenStorageService: TokenStorageService) {
-    this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null')
-  }
+    constructor(private tokenStorageService: TokenStorageService) {
+        this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
+    }
 
-  headers():HttpHeaders{
-    return new HttpHeaders({
-      'Authorization':this.token ? `Bearer ${this.token.output.token}` : ''
-    })
-  }
+    headers(): HttpHeaders {
+        return new HttpHeaders({
+            Authorization: this.token ? `Bearer ${this.token.output.token}` : '',
+        });
+    }
 }

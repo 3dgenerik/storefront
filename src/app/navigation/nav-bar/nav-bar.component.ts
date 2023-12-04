@@ -9,7 +9,7 @@ import { ISignInRegisterUser } from '../../interfaces/interfaces';
     templateUrl: './nav-bar.component.html',
     styleUrl: './nav-bar.component.css',
 })
-export class NavBarComponent implements OnInit{
+export class NavBarComponent implements OnInit {
     token: ISignInRegisterUser | null;
 
     constructor(
@@ -20,11 +20,10 @@ export class NavBarComponent implements OnInit{
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
     }
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     logOut(): void {
-        this.router.navigate(['signin']);
         this.tokenStorageService.removeToken('token');
+        this.router.navigate(['signin']);
     }
 }

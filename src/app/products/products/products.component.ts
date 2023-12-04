@@ -23,30 +23,29 @@ export class ProductsComponent implements OnInit {
         private getProductsService: GetProductsService,
         private tokenStorageService: TokenStorageService,
         private generateProductsService: GenerateProductsService,
-        private getAllProductsService: GetAllProductsService
+        private getAllProductsService: GetAllProductsService,
     ) {
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
     }
 
     ngOnInit(): void {
         this.getAllProductsService.getAllProducts().subscribe({
-            next:(allProducts)=>{
-                if(allProducts.length === 0){
+            next: (allProducts) => {
+                if (allProducts.length === 0) {
                     this.generateProductsService.getenerateProducts().subscribe({
-                        error:(error)=>{
-                            if(error instanceof HttpErrorResponse){
-                                
+                        error: (error) => {
+                            if (error instanceof HttpErrorResponse) {
                                 console.log(error.error.text);
                             }
-                        }
-                    })
+                        },
+                    });
                 }
             },
-            error:(error)=>{
+            error: (error) => {
                 this.hasError = true;
-                this.errorMessage = `${error}. Maybe server problem.`
+                this.errorMessage = `${error}. Maybe server problem.`;
             },
-            complete: ()=>{
+            complete: () => {
                 this.getProductsService.getProducts().subscribe({
                     next: (response) => {
                         this.products = response;
@@ -58,12 +57,8 @@ export class ProductsComponent implements OnInit {
                         this.errorMessage = error;
                     },
                 });
-            }
-        })
-
-
-
-
+            },
+        });
     }
 
     getCategory(category: string): void {

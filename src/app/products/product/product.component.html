@@ -1,5 +1,5 @@
     <div class = 'product-wrapper border p-3 rounded-3 gap-3' [ngClass]="{'d-flex':layout==='detail', 'd-block':layout==='list'}">
-        <div class="img-wrapper overflow-hidden rounded-1 w-sm-50 w-100">
+        <div class="img-wrapper overflow-hidden rounded-1 w-sm-50 w-100 h-100">
             <img class="w-100 h-100" [src]="'assets/images/products/' + product.category + '.jpg'" width="1024" height="1024" [alt]="product.category">
         </div>
         <div class="flex-column justify-content-between w-sm-50 w-100" [ngClass]="{'d-flex':layout==='detail', 'd-block':layout==='list'}">

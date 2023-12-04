@@ -6,8 +6,13 @@ import { Injectable } from '@angular/core';
 export class TokenStorageService {
     private token: string = '';
 
+    constructor() {
+        this.token = this.getToken('token') || 'null';
+    }
+
     saveToken(valueName: string, token: string): void {
         localStorage.setItem(valueName, token);
+        this.token = token;
     }
 
     getToken(valueName: string): string | null {
@@ -16,5 +21,6 @@ export class TokenStorageService {
 
     removeToken(valueName: string): void {
         localStorage.removeItem(valueName);
+        this.token = '';
     }
 }

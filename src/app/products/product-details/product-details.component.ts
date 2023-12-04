@@ -23,7 +23,7 @@ export class ProductDetailsComponent implements OnInit {
         private routerActivation: ActivatedRoute,
         private getProductByIdService: GetProductByIdService,
         private quantityService: QuantityService,
-        private tokenStorageService: TokenStorageService
+        private tokenStorageService: TokenStorageService,
     ) {
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null');
     }
@@ -45,13 +45,9 @@ export class ProductDetailsComponent implements OnInit {
         // this.quantityService.quantity$.subscribe((quantity)=>{
         //   this.quantity = quantity;
         // })
-
-        
     }
 
-    
     getQuantity(quantity: number): void {
-      this.quantity = quantity;
-  }
-
+        this.quantity = quantity;
+    }
 }
