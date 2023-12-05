@@ -1,0 +1,9 @@
+<app-nav-bar-wrapper></app-nav-bar-wrapper>
+<div style="padding-top: 80px;"></div>
+<div class="d-flex justify-content-center">
+    
+    <div class="w-100 d-flex p-3 flex-column rounded-3 border" style="background-color: #fff; max-width: 800px;">
+        <div class="fw-bold" style="font-size: 1rem;">{{productsInOrder.length}} products in cart</div>
+        <app-cart *ngFor="let product of productsInOrder" [cart]="product" ></app-cart>
+    </div>
+</div>

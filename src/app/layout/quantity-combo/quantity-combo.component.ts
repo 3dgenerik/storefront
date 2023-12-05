@@ -12,6 +12,7 @@ import { ProductInOrder } from '../../models/ProductInOrder';
 import { GetAllProductsInOrdersService } from '../../orders/services/get-all-products-in-orders.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { GetAllProductsInOrderByOrderIdService } from '../../products/services/get-all-products-in-order-by-order-id.service';
 
 @Component({
     selector: 'app-quantity-combo',
@@ -37,6 +38,7 @@ export class QuantityComboComponent implements OnInit {
         private createOrderService: CreateOrderService,
         private createProductInOrderService: CreateProductInOrderTsService,
         private getAllProductsInOrdersService: GetAllProductsInOrdersService,
+        private getAllProductsInOrderByOrderId: GetAllProductsInOrderByOrderIdService
     ) {
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null') as ISignInRegisterUser;
 
@@ -49,15 +51,15 @@ export class QuantityComboComponent implements OnInit {
         if (this.token.output.user.id) {
             this.getOrderByStatusAndUserId.getOrderByStatusAndUserId(this.token.output.user.id).subscribe({
                 next: (response) => {
-                    if (response.length !== 0) this.getAllProductsInOrder();
                     this.order = response[0];
+                    if (response.length !== 0) this.getAllProductsInOrder();
                 },
             });
         }
     }
 
     private getAllProductsInOrder(): void {
-        this.getAllProductsInOrdersService.getAllProductsInOrders().subscribe({
+        this.getAllProductsInOrderByOrderId.getAllProductsInOrderByOrderId(this.order.id || 1).subscribe({
             next: (response) => {
                 this.allProductsInOrders = response;
             },
@@ -72,7 +74,7 @@ export class QuantityComboComponent implements OnInit {
 
     private isBtnSelected(order: Order): boolean {
         for (const productsInOrders of this.allProductsInOrders) {
-            if (productsInOrders.product_id === this.product.id && productsInOrders.order_id === order.id) {
+            if (productsInOrders.product_id === this.product.id) {
                 return true;
             }
         }

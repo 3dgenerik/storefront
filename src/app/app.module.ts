@@ -23,6 +23,8 @@ import { InfoComponent } from './layout/info/info.component';
 import { GetAllUsersComponent } from './users/get-all-users/get-all-users.component';
 import { UserComponent } from './users/user/user.component';
 import { BackToProductComponent } from './layout/back-to-product/back-to-product.component';
+import { CartsComponent } from './cart/carts/carts.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +45,8 @@ import { BackToProductComponent } from './layout/back-to-product/back-to-product
         GetAllUsersComponent,
         UserComponent,
         BackToProductComponent,
+        CartsComponent,
+        CartComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule],
     providers: [QuantityService],
