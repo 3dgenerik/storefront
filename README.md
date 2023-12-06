@@ -77,7 +77,7 @@
 #### http://localhost:3000/cart
 
     Here is the shopping cart with products that the user has added, along with additional product information, 
-    a redirect to product details, the ability to change quantities, and the option to remove products from the list.
+    a link to product details, the ability to change quantities, and the option to remove products from the list.
     On the right side, there is a payment form. After successfully filling all the inputs and pressing the 'Pay now'
      button, the user is redirected to the http://localhost:3000/success endpoint, the product list is now empty and
      active order is set to 'complete'. 
