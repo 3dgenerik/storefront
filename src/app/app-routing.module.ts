@@ -7,6 +7,7 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { GetAllUsersComponent } from './users/get-all-users/get-all-users.component';
 import { CartsComponent } from './cart/carts/carts.component';
 import { SuccessComponent } from './success/success/success.component';
+import { OrdersHistoryComponent } from './orders/orders-history/orders-history.component';
 
 const routes: Routes = [
     { path: '', component: ProductsComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'product-details/:id', component: ProductDetailsComponent },
     { path: 'users', component: GetAllUsersComponent },
     { path: 'cart', component: CartsComponent},
-    {path: 'success', component: SuccessComponent}
+    {path: 'success', component: SuccessComponent},
+    {path: 'orders-history', component: OrdersHistoryComponent}
 ];
 
 @NgModule({

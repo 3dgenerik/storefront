@@ -1,0 +1,7 @@
+<div class="d-flex gap-3 border p-3 rounded-2 justify-content-between" style="background-color: #fff;">
+    <div>
+        <div style="font-size: .8rem;" >Order id: <span class="fw-bold">#{{order.id}}</span></div>
+        <div style="font-size: .8rem;" >Created: <span class="text-secondary">{{order.timestamp | date: 'dd/MM/yy'}}</span> at <span class="text-secondary">{{order.timestamp | date: 'HH:mm:ss'}}</span></div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center rounded-1" style="width: 80px;" [class]="order.status==='active' ? 'bg-success' : 'bg-warning'">{{order.status}}</div>
+</div>

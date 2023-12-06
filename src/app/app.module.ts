@@ -29,7 +29,9 @@ import { MenuComponent } from './navigation/menu/menu.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import { DateFormatDirective } from './directives/date-format.directive';
-import { SuccessComponent } from './success/success/success.component'
+import { SuccessComponent } from './success/success/success.component';
+import { OrdersHistoryComponent } from './orders/orders-history/orders-history.component';
+import { OrderItemComponent } from './orders/order-item/order-item.component'
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { SuccessComponent } from './success/success/success.component'
         MenuComponent,
         DateFormatDirective,
         SuccessComponent,
+        OrdersHistoryComponent,
+        OrderItemComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule, MatSlideToggleModule, MatIconModule],
     providers: [QuantityService],

@@ -1,0 +1,28 @@
+<ng-template [ngIf]="token" [ngIfElse]="elseBlockParent">
+
+    <app-nav-bar-wrapper></app-nav-bar-wrapper>
+    <div class="pt-5"></div>
+    <div class="pt-5"></div>
+    <div class="w-100 d-flex align-items-center flex-column gap-3">
+        <div class="w-100" style="max-width: 550px;">
+            <div style="font-size: 0.8rem;" class="w-100 pb-3">Order history for user <span class="fw-bold">{{token.output.user.first_name}} {{token.output.user.last_name}}</span></div>
+            <div class="d-flex flex-column gap-3">
+                <ng-template [ngIf]="orders.length === 0" [ngIfElse]="elseBlock">
+                    <p class="text-secondary" style="font-size: 0.8rem;">Order list is empty.</p>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <app-order-item *ngFor="let order of orders" [order]="order"></app-order-item>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #elseBlockParent>
+    <app-signin-register-navigation></app-signin-register-navigation>
+    <div class="w-100 d-flex justify-content-center pt-5">
+        <p class="bg-danger bg-opacity-50 border border-danger p-2 rounded-2">This page is not available for guest users. Please sign in.</p>
+    </div>
+</ng-template>
+
+
