@@ -1,7 +1,7 @@
 <!-- <select (click)="getQuantityEmit()" class="form-select" style="width: 100px;" [(ngModel)]="selectedQuantity"> -->
 <div class="w-100 d-flex gap-4">
-  <select (click)="getQuantityEmit()" class="form-select" style="width: 100px;" [(ngModel)]="selectedQuantity">
-    <option *ngFor="let option of optionNumbers" [value]="option">{{option}}</option>
+  <select class="form-select" style="width: 100px; " [(ngModel)]="selectedQuantity">
+    <option class=""  *ngFor="let option of optionNumbers" [value]="option">{{option}}</option>
   </select>
   <button (click)="addToCartClick()" class="btn w-100 rounded-1" style="font-size: .8rem;" [disabled]="btnSelected" [ngClass]="{'btn-success':btnSelected, 'btn-primary':!btnSelected}">
 

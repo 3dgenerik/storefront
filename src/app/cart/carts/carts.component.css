@@ -1,0 +1,8 @@
+input::placeholder {
+    font-size: 0.8rem; /* Prilagodite veličinu fonta prema vašim potrebama */
+    color: rgb(174, 174, 174);
+  }
+
+input{
+    background-color: rgb(245, 245, 245);
+}

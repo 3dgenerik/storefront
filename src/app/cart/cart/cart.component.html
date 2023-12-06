@@ -5,29 +5,37 @@
 
         <div>
             <div class="overflow-hidden rounded-2" style="width:100px; height: 100px;">
-                <img class="w-100 h-100" [src]="'assets/images/products/' + product.category + '.jpg'" width="1024" height="1024" [alt]="product.category">
+                <a [routerLink]="'/product-details/' + productItem.productInOrder.product_id">
+                    <img class="w-100 h-100" [src]="'assets/images/products/' + productItem.products.category + '.jpg'" width="1024" height="1024" [alt]="productItem.products.category">
+                </a>
             </div>
         </div>
 
         <div class="w-100 d-flex align-items-center justify-content-between">
             
             <div>
-                <div class="text-secondary" style="font-size: 0.7rem;">{{product.category | uppercase}}</div>
-                <h4 class="fw-bold">{{product.name}}</h4>
-                <div class="text-secondary" style="font-size: 0.8rem;">{{product.price | currency: 'USD'}}</div>
+                <div class="text-secondary" style="font-size: 0.7rem;">{{productItem.products.category| uppercase}}</div>
+                <h4 class="fw-bold">{{productItem.products.name}}</h4>
+                <div class="text-secondary" style="font-size: 0.8rem;">{{productItem.products.price| currency: 'USD'}}</div>
             </div>
             
             <div class="d-flex gap-5 align-items-center">
 
                 <div class="d-flex flex-column justify-content-center align-items-center">
-                    <div class="text-secondary" style="font-size: 0.8rem;">Quantity:</div>
-                    <div class="fw-bold">x {{cart.quantity}}</div>
+                    <!-- <div class="text-secondary" style="font-size: 0.8rem;">Quantity:</div> -->
+                    <div class="d-flex align-items-center gap-3">
+                        <select class="form-select p-1" style="width: 70px; font-size: 0.8rem;" [(ngModel)]="selectedQuantity" (change)="onQuantityChange()">
+                            <option *ngFor="let option of optionNumbers" [value]="option">{{option}}</option>
+                          </select>
+                        <div class="fw-bold">x {{selectedQuantity}}</div>
+                    </div>
                 </div>
         
         
                 <div class="d-flex flex-column justify-content-between align-items-center">
                     <div class="text-secondary" style="font-size: 0.8rem;">Total price:</div>
-                    <div class="fw-bold" >{{((product.price | toNumber) * cart.quantity) | currency: 'USD'}}</div>
+                    <!-- <div class="fw-bold" >{{((productItem.products.price| toNumber) * productItem.productInOrder.quantity) | currency: 'USD'}}</div> -->
+                    <div class="fw-bold" >{{((productItem.products.price| toNumber) * selectedQuantity) | currency: 'USD'}}</div>
                 </div>
 
                 <div class="align-items-center">

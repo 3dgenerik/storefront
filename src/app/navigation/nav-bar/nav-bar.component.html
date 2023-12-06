@@ -1,8 +1,16 @@
 
     <div class="d-flex justify-content-between p-2 border-bottom align-items-center" style="background-color: white;">
-        <div><span>STORE</span><span class="fw-bold text-dark">FRONT</span></div>
+
+        <div><span class="text-secondary">STORE</span><span class="fw-bold text-secondary">FRONT</span></div>
+        <app-menu></app-menu>
+
         <div class="d-flex align-items-center gap-3">
-            <div class="ps-3" style="font-size: 0.8rem;"><span class="text-secondary pe-2">Active user:</span><span class="fw-bold text-secondary">{{token?.output?.user?.last_name}}, {{token?.output?.user?.first_name}}</span></div>
+            <div class="ps-3 d-flex align-items-center" style="font-size: 0.8rem;">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="perm_identity" class="text-secondary"></mat-icon>
+                <span class="text-secondary pe-2"></span>
+                <span class="fw-bold text-secondary">{{token?.output?.user?.last_name}}</span> 
+                <span class="text-secondary">, {{token?.output?.user?.first_name}}</span>
+            </div>
             <button class="btn btn-danger rounded-1 py-1" style="font-size: 0.7rem;" (click)="logOut()">Log out</button>
         </div>
     </div>

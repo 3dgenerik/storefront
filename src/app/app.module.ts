@@ -25,6 +25,10 @@ import { UserComponent } from './users/user/user.component';
 import { BackToProductComponent } from './layout/back-to-product/back-to-product.component';
 import { CartsComponent } from './cart/carts/carts.component';
 import { CartComponent } from './cart/cart/cart.component';
+import { MenuComponent } from './navigation/menu/menu.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatIconModule} from '@angular/material/icon'
+
 
 @NgModule({
     declarations: [
@@ -47,8 +51,9 @@ import { CartComponent } from './cart/cart/cart.component';
         BackToProductComponent,
         CartsComponent,
         CartComponent,
+        MenuComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+    imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule, MatSlideToggleModule, MatIconModule],
     providers: [QuantityService],
     bootstrap: [AppComponent],
 })
