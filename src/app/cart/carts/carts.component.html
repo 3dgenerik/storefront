@@ -4,7 +4,7 @@
     <ng-template [ngIf]="isSignedIn" [ngIfElse]="elseBlock">
         
         <div class="w-100 d-flex p-3 flex-column rounded-3 border" style="background-color: #fff; max-width: 800px;">
-            <div class="pb-2">Order created: <span class="text-info">{{order.timestamp | date}} {{order.timestamp | date:'HH:mm:ss'}}</span></div>
+            <div class="pb-2" *ngIf="order && order.timestamp !== undefined">Order created: <span class="text-info">{{ order.timestamp | date}} {{order.timestamp | date:'HH:mm:ss'}}</span></div>
             <div class="d-flex justify-content-between">
                 <div class="fw-bold text" style="font-size: 1rem;">{{productsInOrder.length}} products in cart</div>
                 <div class="fw-bold" style="font-size: 1rem;"><span class="text-secondary">Total: </span><span >{{productsInOrder.length === 0 ? (0 | currency:'USD') : (totalQuantity | currency:'USD')}}</span></div>
@@ -14,27 +14,68 @@
 
         <div class="h-100 p-3 border rounded-3" style="background-color: #fff;">
             <h3 class="fw-bold">Your payment information</h3>
-            <form #form = "ngForm" class="d-flex flex-column gap-4">
+            <form #form = "ngForm" (ngSubmit)="payNow(form)" class="d-flex flex-column gap-4">
                 <div>
                     <label for="full_name" class="form-label text-secondary" style="font-size: 0.8rem;">Full Name*</label>
-                    <input type="text" class="form-control" name="full_name" required minlength="4" placeholder="Your Full Name">
+                    <input type="text" class="form-control" name="full_name" required minlength="4" placeholder="Your Full Name" [(ngModel)]="fullName" #fullNameInput = "ngModel">
+                    <div *ngIf="fullNameInput.invalid && fullNameInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+                        <div *ngIf="fullNameInput.hasError('required')">
+                            Full name can't be empty.
+                        </div>
+                        <div *ngIf="fullNameInput.hasError('minlength')">
+                            Full name must have minimum 4 characters.
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    <label for="credit_card_number" class="form-label text-secondary" style="font-size: 0.8rem;">Card Number*</label>
-                    <input type="text" class="form-control" name="full_name" required minlength="4" placeholder="1234 1234 1234 1234">
+                    <label for="card_number" class="form-label text-secondary" style="font-size: 0.8rem;">Card Number*</label>
+                    <input type="text" class="form-control" name="card_number" required minlength="16"  maxlength="16" pattern="[0-9]*" placeholder="1234 1234 1234 1234" [(ngModel)]="cardNumber" #cardNumberInput = "ngModel">
+                    <div *ngIf="cardNumberInput.invalid && cardNumberInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+                        <div *ngIf="cardNumberInput.hasError('required')">
+                            Can't be empty.
+                        </div>
+                        <div *ngIf="cardNumberInput.hasError('minlength')">
+                            Must have 16 characters.
+                        </div>
+                        <div *ngIf="cardNumberInput.hasError('maxlength')">
+                            Must have 16 characters.
+                        </div>
+                        <div *ngIf="cardNumberInput.hasError('pattern')">
+                            Must contain only numbers.
+                        </div>
+                    </div>
                 </div>
                 <div class="d-flex gap-2">
                     <div>
-                        <label for="expiration_date *" class="form-label text-secondary" style="font-size: 0.8rem;">Expiration date*</label>
-                        <input type="text" class="form-control" name="expiration_date" required placeholder="MM/YY">
+                        <label for="expiration_date" class="form-label text-secondary" style="font-size: 0.8rem;">Expiration date*</label>
+                        <input type="text" class="form-control" name="expiration_date" required placeholder="MM/YY" required maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" appDateFormat [(ngModel)]="expirationDate" #expirationDateInput = "ngModel">
+                        <div *ngIf="expirationDateInput.invalid && expirationDateInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+                            <div *ngIf="expirationDateInput.hasError('required')">
+                                Can't be empty.
+                            </div>
+                            <div *ngIf="expirationDateInput.hasError('pattern')">
+                                Use numbers in MM/YY format
+                            </div>
+
+                        </div>
                     </div>
                     <div>
-                        <label for="CVV_CVN *" class="form-label text-secondary" style="font-size: 0.8rem;">CVV / CVN*</label>
-                        <input type="text" class="form-control" name="CVC" required minlength="3" maxlength="3" placeholder="CVC">
+                        <label for="CVV_CVN" class="form-label text-secondary" style="font-size: 0.8rem;">CVV / CVN*</label>
+                        <input type="text" class="form-control" name="CVV_CVN" required minlength="3" maxlength="3" pattern="[0-9]*" placeholder="CVC" [(ngModel)]="CvvCvn" #CvvCvnInput = "ngModel">
+                        <div *ngIf="CvvCvnInput.invalid && CvvCvnInput.dirty" class="" style="color: red; font-size: 0.8rem;">
+                            <div *ngIf="CvvCvnInput.hasError('required')">
+                                Can't be empty.
+                            </div>
+                            <div *ngIf="CvvCvnInput.hasError('minlength')">
+                                Must be 3 numbers
+                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-primary w-100 py-2" style="font-size: 0.8rem;">Pay now</button>  
+                    <div style="color: red; font-size: 0.8rem;">{{invalidForm}}</div>
+                    <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 0.8rem;" [disabled]="productItems.length === 0">Pay now</button>  
                 </div>
             </form>
         </div>

@@ -1,3 +1,4 @@
+import { Order } from '../models/Order';
 import { Product } from '../models/Product';
 import { ProductInOrder } from '../models/ProductInOrder';
 import { User } from '../models/User';
@@ -14,3 +15,10 @@ export interface IProductItems{
     productInOrder: ProductInOrder
   }
   
+  export interface ISuccessData{
+    firstName: string,
+    lastName: string,
+    totalPrice: number,
+    timestamp: string,
+    orderId: number
+  }

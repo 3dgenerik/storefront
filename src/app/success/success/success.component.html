@@ -1,0 +1,32 @@
+<ng-template [ngIf]="token" [ngIfElse]="elseBlock">
+    <app-nav-bar-wrapper></app-nav-bar-wrapper>
+
+
+    <ng-template [ngIf]="isInvalid" [ngIfElse]="innerElseBlock">
+        <div class="w-100 d-flex justify-content-center">
+            <p class="bg-danger bg-opacity-50 border border-danger mt-5 p-2 rounded-2">Wrong parameters. Please use correct params for this page.</p>
+        </div>
+    </ng-template>
+    <ng-template #innerElseBlock>
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+            <div class="p-3 border rounded-3 text-center" style="background-color: #fff; max-width: 600px;">
+                <mat-icon aria-hidden="true" aria-label="Example home icon" fontIcon="done" class="text-success" style="font-size: 28px;"></mat-icon>
+                <h1 class="text-success fw-bold">Payment successful</h1>
+                <p>Thank you, <span class="fw-bold">{{firstName}} {{lastName}}</span>. Your order <span class="fw-bold">#{{orderId}}</span>,
+                    from <span class="text-secondary">{{timestampDate}}</span> at 
+                    <span class="text-secondary">{{timeStampTime}}</span> with a total
+                    amount of <span class="fw-bold">{{totalPrice | currency: 'USD'}}</span>, has been confirmed.
+                </p>
+                <button (click)="backToProducts()" class="btn btn-warning rounded-1 mt-4" style="font-size: 0.8rem;">Back to products</button>
+            </div>
+        </div>
+    </ng-template>
+    
+
+</ng-template>
+<ng-template #elseBlock>
+    <app-signin-register-navigation></app-signin-register-navigation>
+    <div class="w-100 d-flex justify-content-center">
+            <p class="bg-danger bg-opacity-50 p-2 border border-danger rounded-2">Page not available for unsigned users.</p>
+    </div>
+</ng-template>

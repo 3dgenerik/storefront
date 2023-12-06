@@ -5,6 +5,7 @@
         <div class="mb-3">
           <label for="first_name" class="form-label">First name</label>
           <input type="text" class="form-control" name="first_name" required minlength="4" [(ngModel)]="firstName" #firstNameInput = 'ngModel'>
+          
           <div *ngIf="firstNameInput.invalid && firstNameInput.dirty" class="" style="color: red; font-size: 0.8rem;">
             <div *ngIf="firstNameInput.hasError('required')">
                 First name can't be empty.

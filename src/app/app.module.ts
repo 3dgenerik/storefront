@@ -27,7 +27,9 @@ import { CartsComponent } from './cart/carts/carts.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { MenuComponent } from './navigation/menu/menu.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { DateFormatDirective } from './directives/date-format.directive';
+import { SuccessComponent } from './success/success/success.component'
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import {MatIconModule} from '@angular/material/icon'
         CartsComponent,
         CartComponent,
         MenuComponent,
+        DateFormatDirective,
+        SuccessComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, ReactiveFormsModule, MatSlideToggleModule, MatIconModule],
     providers: [QuantityService],
