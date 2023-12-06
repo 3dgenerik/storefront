@@ -38,9 +38,10 @@
     
 #### http://localhost:3000/ (for guests users)
 
-    This endpoint is starting endpoint and contain all products from database. The user is currently using the application as a guest user and cannot make
-    purchases or access other features and benefits. They can only browse products, view product details and filtering 
-    by category. In the upper right corner, there are two options where the user can sign in or register.
+    This endpoint is starting endpoint and contain all products from database. The user is currently using the application 
+    as a guest user and cannot make purchases or access other features and benefits. They can only browse products, 
+    view product details and filtering by category. In the upper right corner, there are two options where the 
+    user can sign in or register.
 
 
 #### http://localhost:3000/register
