@@ -1,15 +1,18 @@
-    <div class="d-flex gap-4 fw-bold">
+    <div class="d-flex gap-4 ">
         <a class="text-dark d-flex align-items-center" routerLink="/">
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="ballot" class="text-opacity-75 d-flex align-items-center" style="font-size: 1.4rem; color: rgb(0, 162, 255)"></mat-icon>
-            <span class="" style="font-size: .8rem; color: rgb(62, 62, 62);">Product</span>
+            <span class="fw-bold" style="font-size: .8rem; color: rgb(62, 62, 62);">Product</span>
         </a>
-        <a class="text-dark d-flex align-items-center" routerLink="/cart">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart" class="text-opacity-75 d-flex align-items-center" style="font-size: 1.4rem; color: rgb(0, 162, 255)"></mat-icon>
-            <span class=""  style="font-size: .8rem; color: rgb(62, 62, 62);">Cart</span>
+        <a class="text-dark d-flex align-items-center" style="position: relative;" routerLink="/cart">
+            <ng-template [ngIf]="productsInOrder.length > 0">
+                <div class="bg-danger d-flex justify-content-center align-items-center rounded-pill px-1" style="font-size: 0.7rem; color: #fff; position: absolute; left: -6px; top:-5px; z-index: 3;"><span>{{productsInOrder.length}}</span></div>
+            </ng-template>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart" class="text-opacity-75 d-flex align-items-center" style="font-size: 1.4rem; color: rgb(0, 162, 255); position: relative;"></mat-icon>
+            <span class="fw-bold"  style="font-size: .8rem; color: rgb(62, 62, 62);">Cart</span>
         </a>
 
         <a class="text-dark d-flex align-items-center " routerLink="/orders-history">
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="history" class=" text-opacity-75 d-flex align-items-center" style="font-size: 1.4rem; color: rgb(0, 162, 255)"></mat-icon>
-            <span class=""  style="font-size: .8rem; color: rgb(62, 62, 62);">Orders history</span>
+            <span class="fw-bold"  style="font-size: .8rem; color: rgb(62, 62, 62);">Orders history</span>
         </a>
     </div>

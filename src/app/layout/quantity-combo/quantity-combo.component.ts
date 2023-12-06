@@ -13,6 +13,7 @@ import { GetAllProductsInOrdersService } from '../../orders/services/get-all-pro
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { GetAllProductsInOrderByOrderIdService } from '../../products/services/get-all-products-in-order-by-order-id.service';
+import { RestartComponentService } from '../../services/restart-component.service';
 
 @Component({
     selector: 'app-quantity-combo',
@@ -38,7 +39,9 @@ export class QuantityComboComponent implements OnInit {
         private createOrderService: CreateOrderService,
         private createProductInOrderService: CreateProductInOrderTsService,
         private getAllProductsInOrdersService: GetAllProductsInOrdersService,
-        private getAllProductsInOrderByOrderId: GetAllProductsInOrderByOrderIdService
+        private getAllProductsInOrderByOrderId: GetAllProductsInOrderByOrderIdService,
+        private restartComponentService: RestartComponentService
+
     ) {
         this.token = JSON.parse(this.tokenStorageService.getToken('token') || 'null') as ISignInRegisterUser;
 
@@ -98,11 +101,15 @@ export class QuantityComboComponent implements OnInit {
             error: (error) => {
                 console.log(error);
             },
+            complete: ()=>{
+                this.restartComponentService.restartUpdate()
+            }
         });
     }
 
     addToCartClick(): void {
         this.addToCartClickSubject.next();
+        
     }
 
     private addToCart(): void {
@@ -129,5 +136,7 @@ export class QuantityComboComponent implements OnInit {
                 },
             });
         }
+       
     }
+    
 }

@@ -93,7 +93,6 @@ export class CartsComponent implements OnInit {
     
 
     deleteAllProductByOrderId():void{
-        console.log('ORDER: ', this.order);
         if (this.order?.id) {
             this.deletelAllProductsByOrderIdService.deleteAllPoructsByOrderId(this.order.id).subscribe({
                 next: (response)=>{
