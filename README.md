@@ -10,7 +10,7 @@
 ### Note
 
     Don't forget to create tables using db-migrate in my storefront-api backend application. Just do following command:
-    //Only if it's necessary you can remove all tables first
+    //Only if it's necessary you can remove all tables
     npm run reset
 
     //create tables
@@ -29,50 +29,23 @@
     },
 
 
+## Storefront funcionality
 
-## Important notes before we start with endpoints
-For DEV mode first of all we need to run following command to create tables:
+    - When the application starts, 35 products are automatically created to enhance user experience and make interaction with the application more engaging.
 
-    npm run up
-
-This will create the tables in the following order:
-
-    users_table
-    products_table
-    orders_table
-    products_in_order_table
-
-Order is very important because orders_table has CONSTRAINT to id from users_table, and products_in_order_table has CONSTRAINTS to id from products_table and to id from orders_table.
-
-Then run the app:
-
-    npm start
-
-Now we want to add approximately 30 rows to each tables to have something to work with. Just follow instructions and visit these URLs to trigger the corresponding actions. Also order is very important. 
+### Routes
     
-    http://localhost:3001/api/users/create-random-users
-    http://localhost:3001/api/products/create-random-products
-    http://localhost:3001/api/orders/create-random-orders
-    http://localhost:3001/api/product-in-orders/create-random-product-in-orders
-
-Before we start to use the app FIRST WE NEED TO CREATE TOKEN by signin or signup.
+#### http://localhost:3000/.
+    
+    This route is starting route. The user is currently using the application as a guest user and cannot make purchases or access other features and benefits. They can only browse products and view product details.In the upper right corner, there are two options where the user can log in or register.
 
 
-<br />
-<br />
+
+#### http://localhost:3000/register
 
 
-## Testing in Jasmine
 
-#### To run the test do following
 
-    npm run test
-
-This will change the environment to TEST mode and automatically create all test tables and populate them with rows, and clear all tables when test is finished.
-
-### Notes
-##### I have created my own project from scratch. I did not clone your start project from repo.
-##### I have sent you the 'storefront-api.postman_collection.json' file with all the URLs for testing in Postman.
 
 
 
