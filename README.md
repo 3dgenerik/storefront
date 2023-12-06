@@ -36,15 +36,15 @@
 
 ### Routes
     
-#### http://localhost:3000/.
-    
+#### http://localhost:3000/
     This route is starting route. The user is currently using the application as a guest user and cannot make
     purchases or access other features and benefits. They can only browse products and view product details.
     In the upper right corner, there are two options where the user can log in or register.
 
 
-
 #### http://localhost:3000/register
+
+
 
 
 
